@@ -1,0 +1,12 @@
+import mongoose from 'mongoose';
+
+const taskSchema = new mongoose.Schema({
+  userEmail: String,
+  taskDescription: String,
+  dueTime: Date,
+  taskStatus: String,
+});
+
+const Task = mongoose.model('Task', taskSchema);
+
+export default Task;

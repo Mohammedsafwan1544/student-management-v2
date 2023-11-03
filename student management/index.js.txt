@@ -1,0 +1,19 @@
+import express from 'express';
+import bodyParser from 'body-parser';
+import { connectDB } from './config';
+import adminRoutes from './routes/adminRoutes';
+import userRoutes from './routes/userRoutes';
+
+const web = express();
+web.use(bodyParser.json());
+
+const serverPort = process.env.serverPort || 4000;
+
+connectDB();
+
+web.use('/admin', adminRoutes);
+web.use('/user', userRoutes);
+
+web.listen(serverPort, () => {
+  console.log(`Server is running on port ${serverPort}`);
+});
